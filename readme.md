@@ -2,35 +2,45 @@
 
 A sane & simple approach to managing [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) instances.
 
-**ofxSmartFont** creates, caches and manages [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) instances over the lifecycle of your [OpenFrameworks](http://openframeworks.cc/) application.
+**ofxSmartFont** creates, caches and manages [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) instances over the life of your [OpenFrameworks](http://openframeworks.cc/) application and makes them globally available to any part of your application that needs them.
 
-It generates [smart pointers](https://msdn.microsoft.com/en-us/library/hh279674.aspx) that you can pass around your application without fear of dangling pointers and dead references when an [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) instance inadvertantly goes out of scope.
+It generates [smart pointers](http://stackoverflow.com/questions/106508/what-is-a-smart-pointer-and-when-should-i-use-one) that you can pass around your app without fear of dangling pointers and dead references when an [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) instance inadvertantly goes out of scope.
 
-Fonts are cached to ensure you never load the same one twice and are easily retrieved by a name you assign.
+Fonts are cached to ensure you never load the same one twice and are easily retrieved by name.
 
 --
 
 ####Adding a font
 
-	string file = "fonts/helvetica_neue.ttf";
-	int size = 12;
-	string name = helvetica_12;
-	shared_ptr<ofxSmartFont> helvetica_12pt = ofxSmartFont::add(file, size, name);
+	ofxSmartFont::add("fonts/helvetica_neue.ttf", 12, "helvetica_12");
+
+This returns a [shared pointer](http://stackoverflow.com/questions/106508/what-is-a-smart-pointer-and-when-should-i-use-one) to an **ofxSmartFont** instance that is guaranteed to persist in memory throughout the life of your application.
+
+	shared_ptr<ofxSmartFont> myFont = ofxSmartFont::add(file, size, name);
+
+Note the name field is optional, if it is ommited it will default to the font's filename.
  
+-- 
+
 ####Retrieving a font
+
+Retrieving a font is as simple as requesting it by name.
 
 	shared_ptr<ofxSmartFont> helvetica_12pt = ofxSmartFont::get("helvetica_12");
 
-At any time you can list all of the fonts that have been cached via:
+At any time you can list all of the fonts that are stored in memory via:
 
 	ofxSmartFont::list();
 	>> ofxSmartFont :: ------------------------------------------------
 	>> ofxSmartFont :: total # of fonts cached = 1
-	>> ofxSmartFont :: ofxbraitsch/fonts/HelveticaNeueLTStd-Md.otf : 28
+	>> ofxSmartFont :: helvetica_12 (12pt -> fonts/helvetica_neue.ttf)
 	>> ofxSmartFont :: ------------------------------------------------
 
 
 --
+
+####ofxSmartFont Methods
+
 
 Once you have a pointer to an ofxSmartFont instance you can call any [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) method on it + a few additional convenience methods:
 
@@ -59,4 +69,5 @@ Once you have a pointer to an ofxSmartFont instance you can call any [ofTrueType
 	string file = helvetica_12pt->file();
 	
 	
-	
+--
+
