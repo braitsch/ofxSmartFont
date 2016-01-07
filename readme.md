@@ -24,9 +24,27 @@ Note the name field is optional, if it is ommited it will default to the font's 
 
 ####Retrieving a font
 
-Retrieving a font is as simple as requesting it by name.
+Retrieving a font is as simple as requesting it by name:
 
 	shared_ptr<ofxSmartFont> helvetica_12pt = ofxSmartFont::get("helvetica_12");
+
+However you can also search against the font's filename by also passing in a point size:
+
+	shared_ptr<ofxSmartFont> helvetica_12pt = ofxSmartFont::get("helvetica", 12);
+	
+Or by passing in a set of keys:
+
+	vector<string> keys = {"helvetica", "semibold", "italic"};
+	shared_ptr<ofxSmartFont> helvetica_semibold_italic_12pt = ofxSmartFont::get(keys, 12);
+
+If a search fails to find what you're looking for it will return a ``nullptr`` that you can test against.
+
+	shared_ptr<ofxSmartFont> helvetica_12pt = ofxSmartFont::get("helvetica_12");
+	if (helvetica_12pt != nullptr) cout << "helvetica 12pt found!" << endl;
+
+--
+
+####Listing Cached Fonts
 
 At any time you can list all of the fonts that are stored in memory via:
 

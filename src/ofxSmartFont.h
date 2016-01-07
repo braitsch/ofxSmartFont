@@ -46,8 +46,12 @@ class ofxSmartFont {
         static methods
     */
         static shared_ptr<ofxSmartFont> add(string file, int size, string name = "");
+        static shared_ptr<ofxSmartFont> get(string name);
         static shared_ptr<ofxSmartFont> get(string name, int size);
+        static shared_ptr<ofxSmartFont> get(vector<string> keys, int size);
         static void list();
+    
+        static vector<shared_ptr<ofxSmartFont>> mFonts;
     
     private:
     
@@ -55,7 +59,11 @@ class ofxSmartFont {
         {
             mSize = size;
             mFile = file;
-            mName = name!="" ? name : file;
+            if (name != ""){
+                mName = name;
+            }   else {
+                mName = file.substr(file.find_last_of("/\\") + 1);
+            }
             if (ttf.load(mFile, mSize) == false){
                 log("ERROR!! file : " + mFile + " NOT FOUND");
             }   else{
@@ -69,6 +77,6 @@ class ofxSmartFont {
         string mFile;
         string mName;
         ofTrueTypeFont ttf;
-        static vector<shared_ptr<ofxSmartFont>> mFonts;
     
 };
+
