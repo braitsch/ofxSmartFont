@@ -2,6 +2,8 @@
 
 A sane & simple approach to managing [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) instances.
 
+![image](./readme-img/ofxSmartFont.png)
+
 **ofxSmartFont** creates, caches and manages [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) instances over the life of your [OpenFrameworks](http://openframeworks.cc/) application and makes them globally available to any part of your application that needs them.
 
 It generates [smart pointers](http://stackoverflow.com/questions/106508/what-is-a-smart-pointer-and-when-should-i-use-one) that you can pass around your app without fear of dangling pointers and dead references when an [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) instance inadvertantly goes out of scope.

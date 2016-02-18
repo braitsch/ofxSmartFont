@@ -2,7 +2,7 @@
 
 void ofApp::setup()
 {
-    ofSetWindowShape(1920, 1080);
+    ofSetWindowShape(1620, 900);
     ofSetBackgroundColor(ofColor::white);
     ofSetWindowPosition(ofGetScreenWidth()/2 - ofGetWidth()/2, 0);
     
@@ -29,6 +29,6 @@ void ofApp::draw()
     for (int i=0; i<ofxSmartFont::mFonts.size(); i++) {
         shared_ptr<ofxSmartFont> f = ofxSmartFont::mFonts[i];
         string s = f->name() + " @ "+ std::to_string(f->size()) + " :: The quick brown fox jumps over the lazy dog";
-        f->draw(s, ofGetWidth()/2 - f->width(s)/2, 240 + (i * f->size()*2));
+        f->draw(s, ofGetWidth()/2 - f->width(s)/2, 190 + (i * f->size()*2));
     }
 }
