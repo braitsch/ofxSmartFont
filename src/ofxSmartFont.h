@@ -40,7 +40,6 @@ class ofxSmartFont : public ofTrueTypeFont {
         ofRectangle rect(string s, int x=0, int y=0);
         float width(string s, int x=0, int y=0);
         float height(string s, int x=0, int y=0);
-        float getLineHeight();
     
     /*
         static methods
