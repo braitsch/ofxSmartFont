@@ -23,7 +23,7 @@
 #pragma once
 #include "ofTrueTypeFont.h"
 
-class ofxSmartFont {
+class ofxSmartFont : public ofTrueTypeFont {
 
     public:
     
@@ -64,7 +64,7 @@ class ofxSmartFont {
             }   else {
                 mName = file.substr(file.find_last_of("/\\") + 1);
             }
-            if (ttf.load(mFile, mSize) == false){
+            if (load(mFile, mSize) == false){
                 log("ERROR!! file : " + mFile + " NOT FOUND");
             }   else{
                 log("new font added : " +mName+" @ pt size "+std::to_string(mSize));
@@ -76,7 +76,6 @@ class ofxSmartFont {
         int mSize;
         string mFile;
         string mName;
-        ofTrueTypeFont ttf;
     
 };
 
