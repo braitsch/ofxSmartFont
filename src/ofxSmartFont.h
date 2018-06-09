@@ -1,5 +1,6 @@
 /*
     Copyright (C) 2016 Stephen Braitsch [http://braitsch.io]
+    ofxSmartFont v1.0.0 https://github.com/braitsch/ofxSmartFont
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +24,7 @@
 #pragma once
 #include "ofTrueTypeFont.h"
 
-class ofxSmartFont : public ofTrueTypeFont {
+class ofxSmartFont {
 
     public:
     
@@ -31,30 +32,31 @@ class ofxSmartFont : public ofTrueTypeFont {
         instance methods
     */
     
-        string file();
+        std::string file();
         int size();
-        string name();
-        void name(string name);
-        void draw(string s, int x, int y);
+        std::string name();
+        void name(std::string name);
+        void draw(std::string s, int x, int y);
     
-        ofRectangle rect(string s, int x=0, int y=0);
-        float width(string s, int x=0, int y=0);
-        float height(string s, int x=0, int y=0);
+        ofRectangle rect(std::string s, int x=0, int y=0);
+        float width(std::string s, int x=0, int y=0);
+        float height(std::string s, int x=0, int y=0);
+        float getLineHeight();
     
     /*
         static methods
     */
-        static shared_ptr<ofxSmartFont> add(string file, int size, string name = "");
-        static shared_ptr<ofxSmartFont> get(string name);
-        static shared_ptr<ofxSmartFont> get(string name, int size);
-        static shared_ptr<ofxSmartFont> get(vector<string> keys, int size);
+        static std::shared_ptr<ofxSmartFont> add(std::string file, int size, std::string name = "");
+        static std::shared_ptr<ofxSmartFont> get(std::string name);
+        static std::shared_ptr<ofxSmartFont> get(std::string name, int size);
+        static std::shared_ptr<ofxSmartFont> get(std::vector<std::string> keys, int size);
         static void list();
     
-        static vector<shared_ptr<ofxSmartFont>> mFonts;
+        static std::vector<std::shared_ptr<ofxSmartFont>> mFonts;
     
     private:
     
-        ofxSmartFont(string file, int size, string name)
+        ofxSmartFont(std::string file, int size, std::string name)
         {
             mSize = size;
             mFile = file;
@@ -63,18 +65,19 @@ class ofxSmartFont : public ofTrueTypeFont {
             }   else {
                 mName = file.substr(file.find_last_of("/\\") + 1);
             }
-            if (load(mFile, mSize) == false){
+            if (ttf.load(mFile, mSize) == false){
                 log("ERROR!! file : " + mFile + " NOT FOUND");
             }   else{
                 log("new font added : " +mName+" @ pt size "+std::to_string(mSize));
             }
         }
     
-        static void log(string msg);
+        static void log(std::string msg);
 
         int mSize;
-        string mFile;
-        string mName;
+        std::string mFile;
+        std::string mName;
+        ofTrueTypeFont ttf;
     
 };
 

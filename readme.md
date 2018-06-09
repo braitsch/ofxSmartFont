@@ -1,4 +1,4 @@
-##ofxSmartFont
+## ofxSmartFont
 
 A sane & simple approach to managing [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) instances.
 
@@ -12,7 +12,7 @@ Fonts are cached to ensure you never load the same one twice and are easily retr
 
 --
 
-####Adding a font
+#### Adding a font
 
 	ofxSmartFont::add("fonts/helvetica_neue.ttf", 12, "helvetica_12");
 
@@ -24,7 +24,7 @@ Note the name field is optional, if it is ommited it will default to the font's 
  
 -- 
 
-####Retrieving a font
+#### Retrieving a font
 
 Retrieving a font is as simple as requesting it by name:
 
@@ -46,7 +46,7 @@ If a search fails to find what you're looking for it will return a ``nullptr`` t
 
 --
 
-####Listing Cached Fonts
+#### Listing Cached Fonts
 
 At any time you can list all of the fonts that are stored in memory via:
 
@@ -59,7 +59,7 @@ At any time you can list all of the fonts that are stored in memory via:
 
 --
 
-####ofxSmartFont Methods
+#### ofxSmartFont Methods
 
 
 Once you have a pointer to an ofxSmartFont instance you can call any [ofTrueType](http://openframeworks.cc/documentation/graphics/ofTrueTypeFont.html) method on it + a few additional convenience methods:
@@ -87,7 +87,4 @@ Once you have a pointer to an ofxSmartFont instance you can call any [ofTrueType
 	
 	// get the file name //
 	string file = helvetica_12pt->file();
-	
-	
---
 
